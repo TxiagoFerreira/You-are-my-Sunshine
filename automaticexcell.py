@@ -20,6 +20,7 @@ d2.fill = PatternFill("solid", fgColor="fffffccc")
 thin = Side(border_style="thick")
 d2.border = Border(top=thin, left=thin, right=thin)
 
+print("as")
 #nº de dias da semana
 WS['D4'] = "=DAY(A1)"
 WS['E4'] = "=D4+1"
