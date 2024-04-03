@@ -1,27 +1,31 @@
 from openpyxl import Workbook,load_workbook
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Font, Border, Side, PatternFill, GradientFill, Alignment
+import time as _time
+import math as _math
+import sys
+
 
 # Criar um novo workbook
 wb = load_workbook(r"C:\Users\Urubu\OneDrive\Documentos\GitHub\You-are-my-Sunshine\yha.xlsx")
 # wb = load_workbook(r"C:\Users\Alunos\Downloads\yha.xlsx")
 WS = wb.active
 
-WS['A1'] = "=DATE(2024,04,01)"
+# class datetime.date(mounth)
+# WS['D4'] = "01/042024,04,01"
 
 #mês
 WS.merge_cells('D2:AG2')
 d2 = WS['D2']
-WS['D2'] = '=UPPER(TEXT(A1,"mmmm"))'
+WS['D2'] = '=TEXT(A1,"mmmm")'
 d2.alignment = Alignment(horizontal="center", vertical="center")
 d2.font = Font(name="Calibri", size=48, b="true")
-d2.fill = PatternFill("solid", fgColor="fffffccc")
 
-thin = Side(border_style="thick")
-d2.border = Border(top=thin, left=thin, right=thin)
+double = Side(border_style="thin")
+d2.border = Border(top=double)
 
 #nº de dias da semana
-WS['D4'] = "=DAY(A1)"
+
 WS['E4'] = "=D4+1"
 WS['F4'] = "=E4+1"
 WS['G4'] = "=F4+1"
@@ -93,7 +97,13 @@ WS['AJ3'] = '=TEXT(A1 + 4, "ddd")'
 WS['AK3'] = '=TEXT(A1 + 5, "ddd")'
 WS['AL3'] = '=TEXT(A1 + 6, "ddd")'
 
+# for row in WS.iter_rows(min_row=3, max_row=3, min_col=4, max_col=33):
+#     for cell in row:
+#         if cell.value == 'Sat':
+#             cell.fill = PatternFill("solid", fgColor="fffffccc")
+#             print("goncalo")
+
 
 
 # wb.save(r"C:\Users\Alunos\Downloads\yha.xlsx")
-wb.save(r"C:\Users\Urubu\OneDrive\Documentos\GitHub\You-are-my-Sunshine\yha.xlsx")
+# wb.save(r"C:\Users\Urubu\OneDrive\Documentos\GitHub\You-are-my-Sunshine\yha.xlsx")
