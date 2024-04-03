@@ -3,10 +3,15 @@ from openpyxl.utils import get_column_letter
 from openpyxl.styles import Font
 
 # Criar um novo workbook
-wb = Workbook()
+wb = load_workbook(r"C:\Users\Alunos\Downloads\yha.xlsx")
 WS = wb.active
+
 WS['A1'] = "=DATE(2024,05,01)"
 
+WS.merge_cells('D2:AG2')
+WS['D2'] = '=TEXT(A1,"mmmm")'
+
+#nº de dias da semana
 WS['C4'] = "=DAY(A1)"
 WS['D4'] = "=C4+1"
 WS['E4'] = "=D4+1"
@@ -38,10 +43,11 @@ WS['AD4'] = "=AC4+1"
 WS['AE4'] = "=AD4+1"
 WS['AF4'] = "=AE4+1"
 
+#dias da semana
 WS['C3'] = '=TEXT(A1, "ddd")'
 WS['D3'] = '=TEXT(A1 + 1, "ddd")'
 WS['E3'] = '=TEXT(D1 + 1, "ddd")'
 WS['E3'] = '=TEXT(D1 + 1, "ddd")'
 
 
-wb.save('yha.xlsx')
+wb.save(r"C:\Users\Alunos\Downloads\yha.xlsx")
