@@ -9,7 +9,7 @@ WS = wb.active
 
 WS['A1'] = "=DATE(2024,04,01)"
 
-#mês
+#mês.
 WS.merge_cells('D2:AG2')
 d2 = WS['D2']
 WS['D2'] = '=TEXT(A1,"mmmm")'
