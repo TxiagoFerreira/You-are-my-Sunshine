@@ -1,20 +1,15 @@
 from openpyxl import Workbook,load_workbook
 from openpyxl.utils import get_column_letter
-from openpyxl.styles import Font, Border, Side, PatternFill, GradientFill, Alignment
+from openpyxl.styles import Font
 
 # Criar um novo workbook
-wb = load_workbook(r"C:\Users\Alunos\Downloads\yha.xlsx")
+wb = load_workbook(r"C:\Users\Urubu\OneDrive\Ambiente de Trabalho\estagio\yha.xlsx")
 WS = wb.active
 
-WS['A1'] = "=DATE(2024,05,01)"
+WS['A1'] = "=DATE(2024,04,01)"
 
-#mês
 WS.merge_cells('D2:AG2')
-d2 = WS['D2']
-d2 = '=TEXT(A1,"mmmm")'
-d2.alignment = Alignment(horizontal="center", vertical="center")
-d2.font = Font(name="Calibri", size=48, b="true")
-#d2.border = Border(top="double")
+WS['D2'] = '=TEXT(A1,"mmmm")'
 
 #nº de dias da semana
 WS['C4'] = "=DAY(A1)"
@@ -51,8 +46,43 @@ WS['AF4'] = "=AE4+1"
 #dias da semana
 WS['C3'] = '=TEXT(A1, "ddd")'
 WS['D3'] = '=TEXT(A1 + 1, "ddd")'
-WS['E3'] = '=TEXT(D1 + 1, "ddd")'
-WS['E3'] = '=TEXT(D1 + 1, "ddd")'
+WS['E3'] = '=TEXT(A1 + 2, "ddd")'
+WS['F3'] = '=TEXT(A1 + 3, "ddd")'
+WS['G3'] = '=TEXT(A1 + 4, "ddd")'
+WS['H3'] = '=TEXT(A1 + 5, "ddd")'
+WS['I3'] = '=TEXT(A1 + 6, "ddd")'
+
+WS['J3'] = '=TEXT(A1, "ddd")'
+WS['K3'] = '=TEXT(A1 + 1, "ddd")'
+WS['L3'] = '=TEXT(A1 + 2, "ddd")'
+WS['M3'] = '=TEXT(A1 + 3, "ddd")'
+WS['N3'] = '=TEXT(A1 + 4, "ddd")'
+WS['O3'] = '=TEXT(A1 + 5, "ddd")'
+WS['P3'] = '=TEXT(A1 + 6, "ddd")'
+
+WS['Q3'] = '=TEXT(A1, "ddd")'
+WS['R3'] = '=TEXT(A1 + 1, "ddd")'
+WS['S3'] = '=TEXT(A1 + 2, "ddd")'
+WS['T3'] = '=TEXT(A1 + 3, "ddd")'
+WS['U3'] = '=TEXT(A1 + 4, "ddd")'
+WS['V3'] = '=TEXT(A1 + 5, "ddd")'
+WS['W3'] = '=TEXT(A1 + 6, "ddd")'
+
+WS['X3'] = '=TEXT(A1, "ddd")'
+WS['Y3'] = '=TEXT(A1 + 1, "ddd")'
+WS['Z3'] = '=TEXT(A1 + 2, "ddd")'
+WS['AA3'] = '=TEXT(A1 + 3, "ddd")'
+WS['AB3'] = '=TEXT(A1 + 4, "ddd")'
+WS['AC3'] = '=TEXT(A1 + 5, "ddd")'
+WS['AD3'] = '=TEXT(A1 + 6, "ddd")'
+
+WS['AE3'] = '=TEXT(A1, "ddd")'
+WS['AF3'] = '=TEXT(A1 + 1, "ddd")'
+WS['AG3'] = '=TEXT(A1 + 2, "ddd")'
+WS['AH3'] = '=TEXT(A1 + 3, "ddd")'
+WS['AI3'] = '=TEXT(A1 + 4, "ddd")'
+WS['AJ3'] = '=TEXT(A1 + 5, "ddd")'
+WS['AK3'] = '=TEXT(A1 + 6, "ddd")'
 
 
-wb.save(r"C:\Users\Alunos\Downloads\yha.xlsx")
+wb.save(r"C:\Users\Urubu\OneDrive\Ambiente de Trabalho\estagio\yha.xlsx")
