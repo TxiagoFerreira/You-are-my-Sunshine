@@ -12,12 +12,13 @@ WS['A1'] = "=DATE(2024,04,01)"
 #mês
 WS.merge_cells('D2:AG2')
 d2 = WS['D2']
-WS['D2'] = '=TEXT(A1,"mmmm")'
+WS['D2'] = '=UPPER(TEXT(A1,"mmmm"))'
 d2.alignment = Alignment(horizontal="center", vertical="center")
 d2.font = Font(name="Calibri", size=48, b="true")
+d2.fill = PatternFill("solid", fgColor="fffffccc")
 
-double = Side(border_style="thin")
-d2.border = Border(top=double)
+thin = Side(border_style="thick")
+d2.border = Border(top=thin, left=thin, right=thin)
 
 #nº de dias da semana
 WS['C4'] = "=DAY(A1)"
