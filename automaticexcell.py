@@ -9,13 +9,15 @@ WS = wb.active
 
 WS['A1'] = "=DATE(2024,04,01)"
 
-#mês.
+#mês
 WS.merge_cells('D2:AG2')
 d2 = WS['D2']
 WS['D2'] = '=TEXT(A1,"mmmm")'
 d2.alignment = Alignment(horizontal="center", vertical="center")
 d2.font = Font(name="Calibri", size=48, b="true")
-#d2.border = Border(top="double")
+
+double = Side(border_style="thin")
+d2.border = Border(top=double)
 
 #nº de dias da semana
 WS['C4'] = "=DAY(A1)"
