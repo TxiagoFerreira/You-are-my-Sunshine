@@ -1,15 +1,21 @@
 from openpyxl import Workbook,load_workbook
 from openpyxl.utils import get_column_letter
-from openpyxl.styles import Font
+from openpyxl.styles import Font, Border, Side, PatternFill, GradientFill, Alignment
 
 # Criar um novo workbook
-wb = load_workbook(r"C:\Users\Urubu\OneDrive\Ambiente de Trabalho\estagio\yha.xlsx")
+#wb = load_workbook(r"C:\Users\Urubu\OneDrive\Ambiente de Trabalho\estagio\yha.xlsx")
+wb = load_workbook(r"C:\Users\Alunos\Downloads\yha.xlsx")
 WS = wb.active
 
 WS['A1'] = "=DATE(2024,04,01)"
 
+#mês
 WS.merge_cells('D2:AG2')
+d2 = WS['D2']
 WS['D2'] = '=TEXT(A1,"mmmm")'
+d2.alignment = Alignment(horizontal="center", vertical="center")
+d2.font = Font(name="Calibri", size=48, b="true")
+#d2.border = Border(top="double")
 
 #nº de dias da semana
 WS['C4'] = "=DAY(A1)"
@@ -84,5 +90,5 @@ WS['AI3'] = '=TEXT(A1 + 4, "ddd")'
 WS['AJ3'] = '=TEXT(A1 + 5, "ddd")'
 WS['AK3'] = '=TEXT(A1 + 6, "ddd")'
 
-
-wb.save(r"C:\Users\Urubu\OneDrive\Ambiente de Trabalho\estagio\yha.xlsx")
+wb.save(r"C:\Users\Alunos\Downloads\yha.xlsx")
+#wb.save(r"C:\Users\Urubu\OneDrive\Ambiente de Trabalho\estagio\yha.xlsx")
