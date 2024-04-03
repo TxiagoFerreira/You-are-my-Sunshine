@@ -1,6 +1,6 @@
 from openpyxl import Workbook,load_workbook
 from openpyxl.utils import get_column_letter
-from openpyxl.styles import Font
+from openpyxl.styles import Font, Border, Side, PatternFill, GradientFill, Alignment
 
 # Criar um novo workbook
 wb = load_workbook(r"C:\Users\Alunos\Downloads\yha.xlsx")
@@ -8,8 +8,13 @@ WS = wb.active
 
 WS['A1'] = "=DATE(2024,05,01)"
 
+#mês
 WS.merge_cells('D2:AG2')
-WS['D2'] = '=TEXT(A1,"mmmm")'
+d2 = WS['D2']
+d2 = '=TEXT(A1,"mmmm")'
+d2.alignment = Alignment(horizontal="center", vertical="center")
+d2.font = Font(name="Calibri", size=48, b="true")
+#d2.border = Border(top="double")
 
 #nº de dias da semana
 WS['C4'] = "=DAY(A1)"
