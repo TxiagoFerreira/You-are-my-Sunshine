@@ -10,8 +10,8 @@ import holidays
 
 
 # Criar um novo workbook
-# wb = load_workbook(r"C:\Users\Urubu\OneDrive\Documentos\GitHub\You-are-my-Sunshine\yha.xlsx")
-wb = load_workbook(r"C:\Users\Alunos\Downloads\yha.xlsx")
+wb = load_workbook(r"C:\Users\Urubu\OneDrive\Documentos\GitHub\You-are-my-Sunshine\yha.xlsx")
+# wb = load_workbook(r"C:\Users\Alunos\Downloads\yha.xlsx")
 WS = wb.active
 WS.column_dimensions['C'].width = 25
 medium = Side(border_style="medium")
@@ -29,8 +29,8 @@ dias_semana_pt = {
 }
 
 # Definir cores para sábado e domingo
-fimdesemana_fill = PatternFill("solid", fgColor="fffffccc")
-feriado_fill = PatternFill("solid", fgColor="ff0000")
+fimdesemana_fill = PatternFill("solid", fgColor="ff9ccc")
+feriado_fill = PatternFill("solid", fgColor="e86c0c")
 
 # Definir o mês e o ano
 ano = 2024
@@ -58,13 +58,16 @@ for col in range(4, num_dias + 4):
         WS[get_column_letter(col) + '4'].fill = fimdesemana_fill
 
     if date(ano, mes, current_date) in feriados:  # Feriado
+        WS[get_column_letter(col) + '3'].fill = feriado_fill
         WS[get_column_letter(col) + '4'].fill = feriado_fill
 
     for lin in range(9, num_pessoas_escritorio + 9):
         if date(ano, mes, current_date) in feriados:  # Feriado
             WS[get_column_letter(col) + str(lin)] = 'FE'
+            WS[get_column_letter(col) + str(lin)].fill = feriado_fill
         elif dia_semana_en in ['Sat', 'Sun']:  # Sábado ou Domingo
             WS[get_column_letter(col) + str(lin)] = 'D'
+            WS[get_column_letter(col) + str(lin)].fill = fimdesemana_fill
         elif dia_semana_en in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']:  # Dia útil
             WS[get_column_letter(col) + str(lin)] = 'E'
 
@@ -731,5 +734,5 @@ if num_dias == 31:
 #escritorio
 
 
-wb.save(r"C:\Users\Alunos\Downloads\yha.xlsx")
-# wb.save(r"C:\Users\Urubu\OneDrive\Documentos\GitHub\You-are-my-Sunshine\yha.xlsx")
+# wb.save(r"C:\Users\Alunos\Downloads\yha.xlsx")
+wb.save(r"C:\Users\Urubu\OneDrive\Documentos\GitHub\You-are-my-Sunshine\yha.xlsx")
