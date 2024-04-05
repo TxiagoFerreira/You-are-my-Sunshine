@@ -46,57 +46,9 @@ feriados = holidays.Portugal(years=ano)
 start_date = f"{ano}-{mes}-01"
 
 num_pessoas_escritorio = 8
-
+num_pessoas = 106
 # Percorrer os dias do mês
-for col in range(4, num_dias + 4):
-    current_date = int(start_date.split("-")[-1])
-    dia_semana_en = calendar.day_abbr[calendar.weekday(ano, mes, current_date)]
-    dia_semana_pt = dias_semana_pt[dia_semana_en]
-    
-    if dia_semana_en in ['Sat', 'Sun']:  # Sábado ou Domingo
-        WS[get_column_letter(col) + '3'].fill = fimdesemana_fill
-        WS[get_column_letter(col) + '4'].fill = fimdesemana_fill
 
-    if date(ano, mes, current_date) in feriados:  # Feriado
-        WS[get_column_letter(col) + '3'].fill = feriado_fill
-        WS[get_column_letter(col) + '4'].fill = feriado_fill
-
-    for lin in range(9, num_pessoas_escritorio + 9):
-        if date(ano, mes, current_date) in feriados:  # Feriado
-            WS[get_column_letter(col) + str(lin)] = 'FE'
-            WS[get_column_letter(col) + str(lin)].fill = feriado_fill
-        elif dia_semana_en in ['Sat', 'Sun']:  # Sábado ou Domingo
-            WS[get_column_letter(col) + str(lin)] = 'D'
-            WS[get_column_letter(col) + str(lin)].fill = fimdesemana_fill
-        elif dia_semana_en in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']:  # Dia útil
-            WS[get_column_letter(col) + str(lin)] = 'E'
-
-    WS.column_dimensions[get_column_letter(col)].width = 7
-
-    WS[get_column_letter(col) + '3'] = dia_semana_pt
-    WS[get_column_letter(col) + '3'].font = Font(name="Calibri", b=True, size=18)
-    WS[get_column_letter(col) + '3'].alignment = Alignment(horizontal="center", vertical="center")
-    WS[get_column_letter(col) + '3'].border = Border(top=Side(border_style="dotted"), right=Side(border_style="dotted"), left=Side(border_style="dotted"), bottom=Side(border_style="dotted"))
-
-    WS[get_column_letter(col) + '4'] = current_date
-    WS[get_column_letter(col) + '4'].font = Font(name="Calibri", b=True, size=18)
-    WS[get_column_letter(col) + '4'].alignment = Alignment(horizontal="center", vertical="center")
-    WS[get_column_letter(col) + '4'].border = Border(right=Side(border_style="dotted"), left=Side(border_style="dotted"), bottom=Side(border_style="medium"))
-
-    if col == 4:
-        WS[get_column_letter(col) + '3'].border = Border(top=Side(border_style="dotted"), right=Side(border_style="dotted"), left=Side(border_style="medium"), bottom=Side(border_style="dotted"))
-        
-        WS[get_column_letter(col) + '4'] = '1'
-        WS[get_column_letter(col) + '4'].border = Border(right=Side(border_style="dotted"), left=Side(border_style="medium"), bottom=Side(border_style="medium"))
-    elif col == num_dias + 3:
-        WS[get_column_letter(col) + '3'].border = Border(top=Side(border_style="dotted"), right=Side(border_style="medium"), left=Side(border_style="dotted"), bottom=Side(border_style="dotted"))
-
-        WS[get_column_letter(col) + '4'].border = Border(right=Side(border_style="medium"), left=Side(border_style="dotted"), bottom=Side(border_style="medium"))
-    else:
-        WS[get_column_letter(col) + '3'].border = Border(top=Side(border_style="dotted"), right=Side(border_style="dotted"), left=Side(border_style="dotted"), bottom=Side(border_style="dotted"))
-        WS[get_column_letter(col) + '4'].border = Border(right=Side(border_style="dotted"), left=Side(border_style="dotted"), bottom=Side(border_style="medium"))
-
-    start_date = f"{ano}-{mes}-{current_date + 1}"
 
 
 #mês
@@ -732,7 +684,59 @@ if num_dias == 31:
     WS['AH7'].border = Border(top=medium, bottom=dotted, right=medium, left=dotted)
 
 #escritorio
+for col in range(4, num_dias + 4):
+    current_date = int(start_date.split("-")[-1])
+    dia_semana_en = calendar.day_abbr[calendar.weekday(ano, mes, current_date)]
+    dia_semana_pt = dias_semana_pt[dia_semana_en]
+    
+    if dia_semana_en in ['Sat', 'Sun']:  # Sábado ou Domingo
+        WS[get_column_letter(col) + '3'].fill = fimdesemana_fill
+        WS[get_column_letter(col) + '4'].fill = fimdesemana_fill
 
+    if date(ano, mes, current_date) in feriados:  # Feriado
+        WS[get_column_letter(col) + '3'].fill = feriado_fill
+        WS[get_column_letter(col) + '4'].fill = feriado_fill
+        WS[get_column_letter(col) + '5'].fill = feriado_fill
+        WS[get_column_letter(col) + '6'].fill = feriado_fill
+        WS[get_column_letter(col) + '7'].fill = feriado_fill
+
+    for lin in range(9, num_pessoas + 9):
+        if date(ano, mes, current_date) in feriados:  # Feriado
+            WS[get_column_letter(col) + str(lin)] = 'FE'
+            WS[get_column_letter(col) + str(lin)].fill = feriado_fill
+        elif dia_semana_en in ['Sat', 'Sun']:  # Sábado ou Domingo
+            WS[get_column_letter(col) + str(lin)] = 'D'
+            WS[get_column_letter(col) + str(lin)].fill = fimdesemana_fill
+        elif dia_semana_en in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']:  # Dia útil
+            WS[get_column_letter(col) + str(lin)] = 'E'
+            
+
+    WS.column_dimensions[get_column_letter(col)].width = 7
+
+    WS[get_column_letter(col) + '3'] = dia_semana_pt
+    WS[get_column_letter(col) + '3'].font = Font(name="Calibri", b=True, size=18)
+    WS[get_column_letter(col) + '3'].alignment = Alignment(horizontal="center", vertical="center")
+    WS[get_column_letter(col) + '3'].border = Border(top=Side(border_style="dotted"), right=Side(border_style="dotted"), left=Side(border_style="dotted"), bottom=Side(border_style="dotted"))
+
+    WS[get_column_letter(col) + '4'] = current_date
+    WS[get_column_letter(col) + '4'].font = Font(name="Calibri", b=True, size=18)
+    WS[get_column_letter(col) + '4'].alignment = Alignment(horizontal="center", vertical="center")
+    WS[get_column_letter(col) + '4'].border = Border(right=Side(border_style="dotted"), left=Side(border_style="dotted"), bottom=Side(border_style="medium"))
+
+    if col == 4:
+        WS[get_column_letter(col) + '3'].border = Border(top=Side(border_style="dotted"), right=Side(border_style="dotted"), left=Side(border_style="medium"), bottom=Side(border_style="dotted"))
+        
+        WS[get_column_letter(col) + '4'] = '1'
+        WS[get_column_letter(col) + '4'].border = Border(right=Side(border_style="dotted"), left=Side(border_style="medium"), bottom=Side(border_style="medium"))
+    elif col == num_dias + 3:
+        WS[get_column_letter(col) + '3'].border = Border(top=Side(border_style="dotted"), right=Side(border_style="medium"), left=Side(border_style="dotted"), bottom=Side(border_style="dotted"))
+
+        WS[get_column_letter(col) + '4'].border = Border(right=Side(border_style="medium"), left=Side(border_style="dotted"), bottom=Side(border_style="medium"))
+    else:
+        WS[get_column_letter(col) + '3'].border = Border(top=Side(border_style="dotted"), right=Side(border_style="dotted"), left=Side(border_style="dotted"), bottom=Side(border_style="dotted"))
+        WS[get_column_letter(col) + '4'].border = Border(right=Side(border_style="dotted"), left=Side(border_style="dotted"), bottom=Side(border_style="medium"))
+
+    start_date = f"{ano}-{mes}-{current_date + 1}"
 
 # wb.save(r"C:\Users\Alunos\Downloads\yha.xlsx")
 wb.save(r"C:\Users\Urubu\OneDrive\Documentos\GitHub\You-are-my-Sunshine\yha.xlsx")
